@@ -1,4 +1,4 @@
-# Zookeeper Deploy
+# Zookeeper Ansible
 
 ## Installation
 
