@@ -3,9 +3,9 @@
 ## Installation
 
 ```bash
-make install SERVER_FILE=./hosts
+ansible-playbook -i hosts site.yml
 ```
 
 ```bash
-make clean SERVER_FILE=./hosts
+ansible-playbook -i hosts site.yml --extra-vars "uninstall=true"
 ```

@@ -1,0 +1,10 @@
+---
+
+- name: debug
+  debug: var=uninstall
+
+- include_tasks: install.yml
+  when: uninstall is not defined or uninstall|bool == false
+
+- include_tasks: uninstall.yml
+  when: uninstall is defined and uninstall|bool == true
