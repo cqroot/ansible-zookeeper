@@ -1,0 +1,8 @@
+---
+- name: stop zookeeper
+  command: sh /opt/zookeeper/bin/zkServer.sh status
+  ignore_errors: yes
+  register: status_output
+
+- name: show status output
+  debug: var=status_output.stdout_lines

@@ -1,10 +1,30 @@
 ---
-
 - name: debug
-  debug: var=uninstall
+  debug: var=run_option
 
-- include_tasks: install.yml
-  when: uninstall is not defined or uninstall|bool == false
+- include_tasks: stop.yml
+  when:
+    - run_option is defined
+    - run_option == "stop" or
+      run_option == "restart" or
+      run_option == "uninstall"
 
 - include_tasks: uninstall.yml
-  when: uninstall is defined and uninstall|bool == true
+  when: run_option is not defined or
+    run_option == "install" or
+    run_option == "uninstall"
+
+- include_tasks: install.yml
+  when: run_option is not defined or
+    run_option == "install"
+
+- include_tasks: start.yml
+  when:
+    - run_option is defined
+    - run_option == "start" or
+      run_option == "restart"
+
+- include_tasks: status.yml
+  when:
+    - run_option is defined
+    - run_option == "status"

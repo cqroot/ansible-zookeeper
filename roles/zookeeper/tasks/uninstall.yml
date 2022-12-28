@@ -1,9 +1,4 @@
 ---
-
-- name: stop zookeeper
-  command: sh /opt/zookeeper/bin/zkServer.sh stop
-  ignore_errors: yes
-
 - name: Delete /var/lib/zookeeper
   file:
     state: absent

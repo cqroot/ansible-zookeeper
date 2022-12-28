@@ -1,8 +1,7 @@
 ---
-
 - name: Unarchive the zookeeper bin that needs to be downloaded
-  ansible.builtin.unarchive:
-    src: https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.9/apache-zookeeper-3.5.9-bin.tar.gz
+  unarchive:
+    src: "{{ zookeeper_archive }}"
     dest: /opt/
     remote_src: yes
     validate_certs: no
@@ -21,12 +20,9 @@
   ansible.builtin.file:
     path: /var/lib/zookeeper
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Create id file
   template:
     src: myid.j2
     dest: /var/lib/zookeeper/myid
-
-- name: start zookeeper
-  command: sh /opt/zookeeper/bin/zkServer.sh start

@@ -1,0 +1,3 @@
+---
+- name: start zookeeper
+  command: sh /opt/zookeeper/bin/zkServer.sh start
